@@ -16,7 +16,7 @@ public class CompanyProgram {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         String empName, empNum, hireDate;
         int shift;
         double rateOfPay;

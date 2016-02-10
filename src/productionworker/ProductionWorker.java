@@ -17,10 +17,10 @@ public class ProductionWorker extends Employee {
     private double rateOfPay;
     private int shift;
     
-public ProductionWorker(String x, String numb, String day, int sh, double pay){
+public ProductionWorker(String x, String numb, String day, int sh, double pay) throws IllegalAccessException{
     super(x, numb, day);
-    shift = sh;
-    rateOfPay = pay;
+    setShift(sh);
+   setRateOfPay(pay);
     
 }
 
@@ -43,12 +43,13 @@ public void setRateOfPay (double r) throws IllegalAccessException{
    
 }
 
-public void setShift(int sh) throws IllegalAccessException{
-    if (isValidShift(sh)){
-        shift = sh;
-    }else{
-        throw new IllegalAccessException("You must enter a valid shift.");
-    }
+public void setShift(int sh) throws isValidShift{
+   if( sh < 1 || sh >2){
+       throw new InvalidShift();
+   }else{
+       shift = sh;
+   }   
+
 }
 
 private boolean isValidShift(int sh){
@@ -60,6 +61,7 @@ private boolean isValidShift(int sh){
 }
 
 private boolean isValidRateOfPay(double r){
+   
     boolean payStatus = true;
     if(r > 0){
         payStatus = false;
@@ -76,22 +78,6 @@ public int getShift(){
     return shift;
 }
 
-public String goString(){
-    DecimalFormat money = new DecimalFormat ("#,##0.00");
-    
-    String info = super.toString();
-    
-    
-    info +="\nShift: ";
-    if (shift == DAY_SHIFT){
-        info += "Day";
-    }else if (shift ==NIGHT_SHIFT){
-        info +="Night";
-        
-    }else{
-        info += "INVALID SHIFT NUMBER";
-        info +=("\nHourly Pay $ "+ money.format(rateOfPay));
-        return 
-    }
+
 }
 
