@@ -21,6 +21,7 @@ public Employee(String a, String b, String c){
 	 dateOfHire = c;
 }
 
+
 	      
  public Employee(){
         empName = "";
@@ -31,6 +32,7 @@ public Employee(String a, String b, String c){
 
 public void setName(String a){
 	empName = a;
+        
 }
 
 
@@ -57,12 +59,13 @@ private boolean isValidEmpNum(String b) {
 
  public void setEmployeeNumber(String b){
         if (isValidEmpNum(b))
+            
 	 {
 	  empNum = b;
 	  }
 	 else
 	 {
-	 empNum = "";
+	 throw new IllegalArgumentException("You must enter a valid employee number."); 
 }
 }
 

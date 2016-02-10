@@ -17,7 +17,7 @@ public class CompanyProgram {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String empName, empNumber, hireDate;
+        String empName, empNum, hireDate;
         int shift;
         double rateOfPay;
         
@@ -28,7 +28,7 @@ public class CompanyProgram {
         empName = input.nextLine();
         
         System.out.println("Please enter employee number.");
-        empNumber = input.nextLine();
+        empNum = input.nextLine();
         
         System.out.println("Please enter your start date.");
         hireDate = input.nextLine();
@@ -39,7 +39,7 @@ public class CompanyProgram {
         System.out.println("Please enter your rate of pay.");
         rateOfPay = input.nextDouble();
         
-        ProductionWorker worker = new ProductionWorker();
+        ProductionWorker worker = new ProductionWorker(empName, empNum, hireDate, shift, rateOfPay);
         
         System.out.println();
         System.out.println("Name: " + worker.getName());

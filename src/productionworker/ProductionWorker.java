@@ -34,12 +34,37 @@ public ProductionWorker(){
     
 }
 
-public void setRateOfPay (double r){
-    rateOfPay=r;
+public void setRateOfPay (double r) throws IllegalAccessException{
+    if (isValidRateOfPay(r)){
+        rateOfPay = r;
+    }else{
+        throw new IllegalAccessException("Please enter a valid pay rate.");
+    }
+   
 }
 
-public void setShift(int s){
-    shift = s;
+public void setShift(int sh) throws IllegalAccessException{
+    if (isValidShift(sh)){
+        shift = sh;
+    }else{
+        throw new IllegalAccessException("You must enter a valid shift.");
+    }
+}
+
+private boolean isValidShift(int sh){
+    boolean shiftStatus = true;
+    if (sh != 1 || sh !=2){
+        shiftStatus = false;
+}
+    return shiftStatus;
+}
+
+private boolean isValidRateOfPay(double r){
+    boolean payStatus = true;
+    if(r > 0){
+        payStatus = false;
+    }
+    return payStatus;
 }
 
 public double getRateOfPay(){
