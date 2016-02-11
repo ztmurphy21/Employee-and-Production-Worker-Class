@@ -16,38 +16,45 @@ public class CompanyProgram {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IllegalAccessException {
-        String empName, empNum, hireDate;
-        int shift;
-        double rateOfPay;
+    public static void main(String[] args)  {
+        //valid 
+       createWorker("John Smith" , " 123-A", "11-15-2005", ProductionWorker.DAY_SHIFT, 16.50);
         
-        Scanner input = new Scanner (System.in);
+        //invalid emp number
+        System.out.println("Attemping to make invalid employee number...");
+        createWorker("John Smith", "1000001", "11-15-2008", ProductionWorker.DAY_SHIFT, 16.50);
         
         
-        System.out.println("Please enter your name.");
-        empName = input.nextLine();
+        //invalid shift
+       System.out.println("Attemping to make invalid shift number...");
+        createWorker("Bob King", "456", "1-31-1996", 66, 16.50);
         
-        System.out.println("Please enter employee number.");
-        empNum = input.nextLine();
         
-        System.out.println("Please enter your start date.");
-        hireDate = input.nextLine();
+        //invalid pay rate
+        System.out.println("Attempting to make a negative pay rate...");
+        createWorker("Courtney King", "777", "12-5-1995",ProductionWorker.NIGHT_SHIFT, -15.05);
+       
         
-        System.out.println("Please enter shift working.");
-        shift = input.nextInt();
+     
         
-        System.out.println("Please enter your rate of pay.");
-        rateOfPay = input.nextDouble();
         
-        ProductionWorker worker = new ProductionWorker(empName, empNum, hireDate, shift, rateOfPay);
-        
-        System.out.println();
-        System.out.println("Name: " + worker.getName());
-        System.out.println("Employee Number: " + worker.getEmployeeNumber());
-        System.out.println("Hire Date: " + worker.getHireDate());
-        System.out.println("Rate of Pay: " + worker.getRateOfPay());
-        System.out.println("Shift: " + worker.getShift());
-        
+    }
+    
+    public static void createWorker( String x,String  numb, String day,int sh, double r){
+        try{
+            ProductionWorker pw = new ProductionWorker (x, numb, day, sh, r);
+            System.out.println("Object created");
+            System.out.println(pw);
+        }
+        catch (InvalidEmployeeNumber e){
+            System.out.println(e.getMessage());
+        }
+        catch(InvalidShift e){
+            System.out.println(e.getMessage());
+        }
+        catch(InvalidPayRate e){
+            System.out.println(e.getMessage());
+        }
     }
     
 }

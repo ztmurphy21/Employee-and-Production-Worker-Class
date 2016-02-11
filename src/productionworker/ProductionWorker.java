@@ -17,10 +17,10 @@ public class ProductionWorker extends Employee {
     private double rateOfPay;
     private int shift;
     
-public ProductionWorker(String x, String numb, String day, int sh, double pay) throws IllegalAccessException{
+public ProductionWorker(String x, String numb, String day, int sh, double r) throws InvalidEmployeeNumber, InvalidShift, InvalidPayRate{
     super(x, numb, day);
     setShift(sh);
-   setRateOfPay(pay);
+   setRateOfPay(r);
     
 }
 
@@ -34,21 +34,18 @@ public ProductionWorker(){
     
 }
 
-public void setRateOfPay (double r) throws IllegalAccessException{
-    if (isValidRateOfPay(r)){
+public void setRateOfPay (double r) throws InvalidPayRate{
+    if ( r < 0)
+        throw new InvalidPayRate();
+    else
         rateOfPay = r;
-    }else{
-        throw new IllegalAccessException("Please enter a valid pay rate.");
-    }
-   
 }
 
-public void setShift(int sh) throws isValidShift{
-   if( sh < 1 || sh >2){
-       throw new InvalidShift();
-   }else{
-       shift = sh;
-   }   
+public void setShift(int sh) throws InvalidShift{
+  if( sh != DAY_SHIFT && sh != NIGHT_SHIFT)
+      throw new InvalidShift();
+  else
+      shift = sh;
 
 }
 

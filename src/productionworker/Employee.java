@@ -9,13 +9,17 @@ package productionworker;
  *
  * @author Zachary Murphy
  */
+
+
 public class Employee {
     String empName;             
     String empNum;   
     String dateOfHire;         
 	   
 
-public Employee(String a, String b, String c){
+    
+
+public Employee(String a, String b, String c) throws InvalidEmployeeNumber{
         empName = a;
 	empNum = b;
 	 dateOfHire = c;
@@ -50,23 +54,19 @@ private boolean isValidEmpNum(String b) {
 	             	(!Character.isLetter(b.charAt(4)))  ||
 	             
 	             (!(b.charAt(4)>= 'A' && b.charAt(4)<= 'M')))
-	            {
+	            
 	               status = false;
-	            }
+	           
 	         }
 	         return status;
 }
 
- public void setEmployeeNumber(String b){
-        if (isValidEmpNum(b))
-            
-	 {
-	  empNum = b;
-	  }
-	 else
-	 {
-	 throw new IllegalArgumentException("You must enter a valid employee number."); 
-}
+ public void setEmployeeNumber(String b) throws InvalidEmployeeNumber{
+            if(isValidEmpNum(b))
+                empNum = b;
+            else 
+               throw new InvalidEmployeeNumber();
+
 }
 
  public void setHireDate(String c){
@@ -102,6 +102,7 @@ public String toString(){
 	         str += ("\nHire Date: " + dateOfHire);
 	         return str;
 	      }
+    
 }
 
 
